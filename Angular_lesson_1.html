@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+    var text="";
+   
+    function onLoadFunction(){
+     text	 = document.getElementById("greeting").textContent;
+    }
+
+     function OnKeyFunction(event){
+       var key =  event.charCode;
+       	  text = text+String.fromCharCode(key);
+       	 document.getElementById("greeting").innerHTML = text;	
+     }
+
+     function onKeyDownFunction(event){
+      var key = event.which || event.keyCode()
+        if(key === 8){
+         text = text.substring(0, text.length-1);
+         document.getElementById("greeting").innerHTML = text;
+       } 
+     
+     } 
+	</script>
+
+   <script>
+     $(document).ready(function(){
+        var qtext = $("#greetJQuery").html();
+
+       $("#inputText").keypress(function(event){
+          var key = event.charCode || event.which;
+              qtext += String.fromCharCode(key);
+              $("#greetJQuery").html(qtext);
+       });
+              
+
+       $("#inputText").keydown(function(event){
+          var key = event.keyCode || event.which;
+           if(key === 8){
+                qtext = qtext.substring(0, qtext.length-1);
+                $("#greetJQuery").html(qtext);
+                } 
+        });
+       
+     });
+   </script>
+
+</head>
+
+<body onload="onLoadFunction()">
+	
+  <h2> <font color="red">How it works in Java Script</font></h2>
+     <div>
+     	<p>Name:<input type="text"  onkeypress="OnKeyFunction(event)"  onkeydown="onKeyDownFunction(event)"></p>
+     	<h1 id="greeting">Hello </h1>
+     </div>
+
+
+  <h2> <font color="red"> How it works in Angular JS</font></h2>
+  
+	<div ng-app="">
+		<p> Name: <input type="text" ng-model="name"></p>
+      <h1>Hello  {{name}}</h1>
+	</div>
+
+   <h2> <font color="red">How it works in JQuery</font></h2>
+    <div>
+      <p>Name:<input type="text" id="inputText"></p>
+      <h1 id="greetJQuery">Hello </h1>
+     </div>
+   
+     
+</body>
+<html>
